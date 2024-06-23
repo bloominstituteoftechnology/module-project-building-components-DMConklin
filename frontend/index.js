@@ -28,6 +28,23 @@ function moduleProject3() {
 
   function buildLearnerCard(learner, languages) {
     //  ✨ do your magic here
+    function* gen(data) {
+      yield learner.fullName
+      yield `Learner ID: ${learner.id}`
+      yield `Date of Birth: ${learner.dateOfBirth}`
+      yield `Favorite Language: ${languages.find(x => x.id == learner.favLanguage).name}`
+    }
+    const card = document.createElement('div')
+    card.classList.add('learner-card')
+    const cardData = gen(learner)
+    
+
+    for (let i = Object.entries(learner).length; i > 0; i--) {
+      const pElem = document.createElement('p')
+      pElem.textContent = cardData.next().value
+      card.appendChild(pElem)
+    }
+    return card
   }
 
   {
@@ -48,6 +65,10 @@ function moduleProject3() {
       { id: 17, fullName: 'Daniel Castillo', dateOfBirth: '1995-11-05', favLanguage: 12 }
     ]
     //  ✨ do your magic here
+    const secElem = document.querySelector('section')
+    learners.forEach(learner => {
+      secElem.appendChild(buildLearnerCard(learner, languages))
+    })
   }
 
   // 👉 TASK 3 - Write a `buildFooter` component that returns a footer
