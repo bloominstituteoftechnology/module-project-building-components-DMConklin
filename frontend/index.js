@@ -28,7 +28,7 @@ function moduleProject3() {
 
   function buildLearnerCard(learner, languages) {
     //  ✨ do your magic here
-    function* gen(data) {
+    function* gen() {
       yield learner.fullName
       yield `Learner ID: ${learner.id}`
       yield `Date of Birth: ${learner.dateOfBirth}`
@@ -36,8 +36,7 @@ function moduleProject3() {
     }
     const card = document.createElement('div')
     card.classList.add('learner-card')
-    const cardData = gen(learner)
-    
+    const cardData = gen()
 
     for (let i = Object.entries(learner).length; i > 0; i--) {
       const pElem = document.createElement('p')
