@@ -74,7 +74,48 @@ function moduleProject3() {
 
   function buildFooter(footerData) {
     //  ✨ do your magic here
-    return document.createElement('footer')
+    const footer = document.createElement('footer')
+
+    const companyInfo = document.createElement('div')
+    const socialMedia = document.createElement('div')
+    const copyright = document.createElement('div')
+    companyInfo.classList.add('company-info')
+    socialMedia.classList.add('social-media')
+
+    const companyName = document.createElement('p')
+    const address = document.createElement('p')
+    const contactEmail = document.createElement('p')
+    
+    const emailLink = document.createElement('a')
+
+    companyName.classList.add('company-name')
+    address.classList.add('address')
+    contactEmail.classList.add('contact-email')
+
+    emailLink.href = `mailto:${footerData.contactEmail}`
+    
+    companyName.textContent = footerData.companyName
+    address.textContent = footerData.address
+    contactEmail.textContent = 'Email: '
+    emailLink.textContent = footerData.contactEmail
+    copyright.textContent = `\u00A9 BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+
+    Object.entries(footerData.socialMedia).forEach(media => {
+      const aElem = document.createElement('a')
+      aElem.textContent = media[0].charAt(0).toUpperCase() + media[0].substring(1).toLowerCase()
+      aElem.href = media[1]
+      socialMedia.appendChild(aElem)
+    })
+
+    footer.appendChild(companyInfo)
+    footer.appendChild(socialMedia)
+    footer.appendChild(copyright)
+    companyInfo.appendChild(companyName)
+    companyInfo.appendChild(address)
+    companyInfo.appendChild(contactEmail)
+    contactEmail.appendChild(emailLink)
+    
+    return footer
   }
 
   // ❗ DOM creation using your `buildFooter` component (do not change):
