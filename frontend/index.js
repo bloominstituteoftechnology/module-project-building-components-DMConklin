@@ -133,6 +133,18 @@ function moduleProject3() {
   // 👉 TASK 4 - Clicking on the section should deactivate the active card
 
   //  ✨ do your magic here
+  const learnerList = document.querySelectorAll('section div')
+  learnerList.forEach(learner => {
+    learner.addEventListener('click', event => {
+      if (event.currentTarget.classList.contains('active')) {
+        return
+      }
+      if (document.querySelector('.active')) {
+        document.querySelector('.active').classList.remove('active')
+      }
+      event.currentTarget.classList.add('active')
+    }, true)
+  })
 }
 
 // ❗ DO NOT CHANGE THIS CODE
